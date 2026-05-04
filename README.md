@@ -9,8 +9,8 @@ O projeto foi criado utilizando Node 20.22.0
 1. Clonar o repositório e instalar dependências
 
 ```
-git clone https://github.com
-cd sistema_de_refeicoes
+git clone https://github.com/diogobis/sistema-refeicoes.git
+cd sistema-refeicoes
 npm install
 ```
 
