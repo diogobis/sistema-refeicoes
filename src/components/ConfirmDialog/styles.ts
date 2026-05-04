@@ -10,11 +10,16 @@ export const DialOverlay = styled(View)`
 `;
 
 export const DialogContainer = styled.View`
-	background-color: ${theme.colors.white};
-	border-radius: ${theme.borderRadius.lg}px;
-	padding: ${theme.spacing.lg}px;
-	width: 80%;
+	background-color: ${theme.colors.surfaceElevated};
+	border-radius: ${theme.borderRadius.xl}px;
+	padding: ${theme.spacing.xl}px;
+	width: 84%;
 	align-items: center;
+	shadow-color: #1e2430;
+	shadow-offset: 0px 8px;
+	shadow-opacity: 0.1;
+	shadow-radius: 18px;
+	elevation: 5;
 `;
 
 export const DialogTitle = styled.Text`
@@ -23,6 +28,7 @@ export const DialogTitle = styled.Text`
 	color: ${theme.colors.textPrimary};
 	margin-bottom: ${theme.spacing.md}px;
 	text-align: center;
+	line-height: 24px;
 `;
 
 export const DialogMessage = styled.Text`
@@ -30,6 +36,7 @@ export const DialogMessage = styled.Text`
 	color: ${theme.colors.textSecondary};
 	margin-bottom: ${theme.spacing.lg}px;
 	text-align: center;
+	line-height: 22px;
 `;
 
 export const DialogButtonsContainer = styled.View`
@@ -47,7 +54,7 @@ export const DialogButton = styled.TouchableOpacity<{
 		props.variant === "danger"
 			? theme.colors.notDietRed
 			: theme.colors.primary};
-	border-radius: ${theme.borderRadius.md}px;
+	border-radius: ${theme.borderRadius.lg}px;
 	align-items: center;
 `;
 

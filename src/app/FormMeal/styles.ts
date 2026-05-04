@@ -4,7 +4,7 @@ import { theme } from "../../constants/theme";
 
 export const Container = styled(KeyboardAvoidingView)`
 	flex: 1;
-	background-color: ${theme.colors.white};
+	background-color: ${theme.colors.surface};
 `;
 
 export const Content = styled.ScrollView`
@@ -12,15 +12,28 @@ export const Content = styled.ScrollView`
 	padding: ${theme.spacing.lg}px;
 `;
 
+export const Card = styled.View`
+	background-color: ${theme.colors.surfaceElevated};
+	border-radius: ${theme.borderRadius.xxl}px;
+	padding: ${theme.spacing.lg}px;
+	shadow-color: #1e2430;
+	shadow-offset: 0px 8px;
+	shadow-opacity: 0.08;
+	shadow-radius: 18px;
+	elevation: 4;
+`;
+
 export const FormSection = styled.View`
 	margin-bottom: ${theme.spacing.lg}px;
 `;
 
 export const SectionLabel = styled.Text`
-	font-size: ${theme.fontSize.md}px;
+	font-size: ${theme.fontSize.sm}px;
 	font-weight: ${theme.fontWeight.semibold};
-	color: ${theme.colors.textPrimary};
+	color: ${theme.colors.textMuted};
 	margin-bottom: ${theme.spacing.md}px;
+	text-transform: uppercase;
+	letter-spacing: 0.8px;
 `;
 
 export const DateTimeRow = styled.View`
@@ -53,12 +66,19 @@ export const DietButton = styled.TouchableOpacity<{
 			? theme.colors.dietGreenLight
 			: theme.colors.notDietRedLight;
 	}};
-	border-width: ${(props) => (props.isSelected ? 2 : 0)}px;
+	border-width: ${(props) => (props.isSelected ? 2 : 1)}px;
 	border-color: ${(props) =>
 		props.variant === "within"
 			? theme.colors.dietGreen
 			: theme.colors.notDietRed};
 	align-items: center;
+	justify-content: center;
+	min-height: 54px;
+	shadow-color: #1e2430;
+	shadow-offset: 0px 8px;
+	shadow-opacity: 0.06;
+	shadow-radius: 16px;
+	elevation: 3;
 `;
 
 export const DietButtonText = styled.Text<{
@@ -76,6 +96,7 @@ export const DietButtonText = styled.Text<{
 	font-weight: ${(props) =>
 		props.isSelected ? theme.fontWeight.bold : theme.fontWeight.medium};
 	font-size: ${theme.fontSize.md}px;
+	text-align: center;
 `;
 
 export const ButtonContainer = styled.View`

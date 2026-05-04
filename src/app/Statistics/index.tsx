@@ -15,10 +15,13 @@ import {
     DetailValue,
     EmptyText,
     StatsContainer,
+    Subtitle,
     SummaryContainer,
-    SummaryLabel,
-    SummaryValue,
     Title,
+    TopCard,
+    TopCardLabel,
+    TopCardText,
+    TopCardValue,
 } from "./styles";
 
 type StatisticsScreenProps = NativeStackScreenProps<
@@ -28,7 +31,6 @@ type StatisticsScreenProps = NativeStackScreenProps<
 
 export function Statistics({ navigation }: StatisticsScreenProps) {
 	const [meals, setMeals] = useState<Meal[]>([]);
-	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const unsubscribe = navigation.addListener("focus", () => {
@@ -43,13 +45,10 @@ export function Statistics({ navigation }: StatisticsScreenProps) {
 
 	const loadMeals = async () => {
 		try {
-			setLoading(true);
 			const loadedMeals = await getMeals();
 			setMeals(loadedMeals);
 		} catch (error) {
 			console.error("Error loading meals:", error);
-		} finally {
-			setLoading(false);
 		}
 	};
 
@@ -59,6 +58,10 @@ export function Statistics({ navigation }: StatisticsScreenProps) {
 		<Container>
 			<Content>
 				<Title>Suas Estatísticas</Title>
+				<Subtitle>
+					Acompanhe o progresso geral da dieta com base em todas as
+					refeições registradas.
+				</Subtitle>
 
 				{meals.length === 0 ? (
 					<EmptyText>
@@ -67,10 +70,14 @@ export function Statistics({ navigation }: StatisticsScreenProps) {
 					</EmptyText>
 				) : (
 					<>
-						<SummaryContainer>
-							<SummaryLabel>Total de Refeições</SummaryLabel>
-							<SummaryValue>{stats.totalMeals}</SummaryValue>
-						</SummaryContainer>
+						<TopCard>
+							<TopCardLabel>Total de refeições</TopCardLabel>
+							<TopCardValue>{stats.totalMeals}</TopCardValue>
+							<TopCardText>
+								Dados acumulados de todas as refeições salvas no
+								dispositivo.
+							</TopCardText>
+						</TopCard>
 
 						<StatsContainer>
 							<StatCard
@@ -87,13 +94,13 @@ export function Statistics({ navigation }: StatisticsScreenProps) {
 
 						<SummaryContainer>
 							<DetailRow>
-								<DetailLabel>Dentro da Dieta:</DetailLabel>
+								<DetailLabel>Dentro da Dieta: </DetailLabel>
 								<DetailValue>
 									{stats.mealsWithinDiet}
 								</DetailValue>
 							</DetailRow>
 							<DetailRow style={{ borderBottomWidth: 0 }}>
-								<DetailLabel>Fora da Dieta:</DetailLabel>
+								<DetailLabel>Fora da Dieta: </DetailLabel>
 								<DetailValue>
 									{stats.mealsOutsideDiet}
 								</DetailValue>

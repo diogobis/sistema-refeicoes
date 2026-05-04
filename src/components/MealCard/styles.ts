@@ -9,17 +9,27 @@ interface MealCardContainerProps {
 export const MealCardContainer = styled(
 	TouchableOpacity,
 )<MealCardContainerProps>`
-	background-color: ${theme.colors.white};
-	border-left-width: 4px;
+	background-color: ${theme.colors.surfaceElevated};
+	border-width: 1px;
+	border-color: ${(props) =>
+		props.isDiet
+			? theme.colors.dietGreenLight
+			: theme.colors.notDietRedLight};
+	border-left-width: 6px;
 	border-left-color: ${(props) =>
 		props.isDiet ? theme.colors.dietGreen : theme.colors.notDietRed};
-	border-radius: ${theme.borderRadius.md}px;
-	padding: ${theme.spacing.md}px;
+	border-radius: ${theme.borderRadius.xl}px;
+	padding: ${theme.spacing.lg}px;
 	margin-vertical: ${theme.spacing.sm}px;
 	margin-horizontal: ${theme.spacing.md}px;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	shadow-color: #1e2430;
+	shadow-offset: 0px 8px;
+	shadow-opacity: 0.08;
+	shadow-radius: 18px;
+	elevation: 4;
 `;
 
 export const MealCardContent = styled.View`
@@ -30,6 +40,7 @@ export const MealCardName = styled.Text`
 	font-size: ${theme.fontSize.md}px;
 	font-weight: ${theme.fontWeight.semibold};
 	color: ${theme.colors.textPrimary};
+	margin-bottom: ${theme.spacing.xs}px;
 `;
 
 export const MealCardDescription = styled.Text`
@@ -40,8 +51,10 @@ export const MealCardDescription = styled.Text`
 
 export const MealCardMeta = styled.Text`
 	font-size: ${theme.fontSize.xs}px;
-	color: ${theme.colors.textSecondary};
+	color: ${theme.colors.textMuted};
 	margin-top: ${theme.spacing.xs}px;
+	text-transform: uppercase;
+	letter-spacing: 0.6px;
 `;
 
 export const MealCardActions = styled.View`

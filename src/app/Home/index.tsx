@@ -8,6 +8,7 @@ import { MealCard } from "../../components/MealCard";
 import { theme } from "../../constants/theme";
 import { RootStackParamList } from "../../navigation/RootNavigator";
 import { deleteMeal, getMeals } from "../../storage/mealsStorage";
+import { DietStatus } from "../../types/DietStatus";
 import { Meal } from "../../types/Meal";
 import { formatDate, groupMealsByDate } from "../../utils/dateFormatter";
 import {
@@ -17,6 +18,14 @@ import {
     FAB,
     Header,
     HeaderTitle,
+    Hero,
+    HeroEyebrow,
+    HeroStatCard,
+    HeroStatLabel,
+    HeroStatsRow,
+    HeroStatValue,
+    HeroSubtitle,
+    HeroTitle,
     ListContainer,
     SectionHeaderContainer,
     SectionHeaderText,
@@ -46,7 +55,6 @@ export function Home({ navigation }: HomeScreenProps) {
 		try {
 			setLoading(true);
 			const loadedMeals = await getMeals();
-			// Sort by date descending
 			const sorted = loadedMeals.sort(
 				(a, b) =>
 					new Date(b.date).getTime() - new Date(a.date).getTime(),
@@ -60,15 +68,17 @@ export function Home({ navigation }: HomeScreenProps) {
 	};
 
 	const handleDeleteMeal = async () => {
-		if (selectedMealId) {
-			try {
-				await deleteMeal(selectedMealId);
-				await loadMeals();
-				setDeleteDialogVisible(false);
-				setSelectedMealId(null);
-			} catch (error) {
-				console.error("Error deleting meal:", error);
-			}
+		if (!selectedMealId) {
+			return;
+		}
+
+		try {
+			await deleteMeal(selectedMealId);
+			await loadMeals();
+			setDeleteDialogVisible(false);
+			setSelectedMealId(null);
+		} catch (error) {
+			console.error("Error deleting meal:", error);
 		}
 	};
 
@@ -80,20 +90,51 @@ export function Home({ navigation }: HomeScreenProps) {
 		}))
 		.sort((a, b) => {
 			const dateA = new Date(
-				meals.find((m) => groupedMeals[a.title].includes(m))?.date ||
-					"",
+				meals.find((meal) => groupedMeals[a.title].includes(meal))
+					?.date || "",
 			);
 			const dateB = new Date(
-				meals.find((m) => groupedMeals[b.title].includes(m))?.date ||
-					"",
+				meals.find((meal) => groupedMeals[b.title].includes(meal))
+					?.date || "",
 			);
 			return dateB.getTime() - dateA.getTime();
 		});
 
+	const totalMeals = meals.length;
+	const mealsWithinDiet = meals.filter(
+		(meal) => meal.isDiet === DietStatus.WITHIN_DIET,
+	).length;
+	const mealsOutsideDiet = totalMeals - mealsWithinDiet;
+
 	return (
 		<Container>
+			<Hero>
+				<HeroEyebrow>Controle diário da dieta</HeroEyebrow>
+				<HeroTitle>Registre e acompanhe suas refeições</HeroTitle>
+				<HeroSubtitle>
+					Cadastre refeições, avalie sua dieta e veja seu progresso em
+					um único lugar.
+				</HeroSubtitle>
+				<HeroStatsRow>
+					<HeroStatCard>
+						<HeroStatValue>{totalMeals}</HeroStatValue>
+						<HeroStatLabel>Total</HeroStatLabel>
+					</HeroStatCard>
+					<HeroStatCard>
+						<HeroStatValue>{mealsWithinDiet}</HeroStatValue>
+						<HeroStatLabel>Dentro</HeroStatLabel>
+					</HeroStatCard>
+					<HeroStatCard>
+						<HeroStatValue>{mealsOutsideDiet}</HeroStatValue>
+						<HeroStatLabel>Fora</HeroStatLabel>
+					</HeroStatCard>
+				</HeroStatsRow>
+			</Hero>
+
 			<Header>
-				<HeaderTitle>Minhas Refeições</HeaderTitle>
+				<HeaderTitle>
+					{loading ? "Carregando..." : "Refeições cadastradas"}
+				</HeaderTitle>
 			</Header>
 
 			<ListContainer>

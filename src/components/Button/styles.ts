@@ -10,18 +10,24 @@ export const ButtonContainer = styled(TouchableOpacity)<ButtonContainerProps>`
 	background-color: ${(props) => {
 		switch (props.variant) {
 			case "secondary":
-				return theme.colors.gray300;
+				return theme.colors.gray100;
 			case "danger":
 				return theme.colors.notDietRed;
 			default:
 				return theme.colors.primary;
 		}
 	}};
-	height: 48px;
-	border-radius: ${theme.borderRadius.md}px;
+	height: 52px;
+	border-radius: ${theme.borderRadius.lg}px;
 	align-items: center;
 	justify-content: center;
 	margin-vertical: ${theme.spacing.sm}px;
+	padding-horizontal: ${theme.spacing.lg}px;
+	shadow-color: #1e2430;
+	shadow-offset: 0px 8px;
+	shadow-opacity: 0.08;
+	shadow-radius: 18px;
+	elevation: 4;
 `;
 
 export const ButtonTitle = styled.Text<ButtonContainerProps>`
@@ -33,4 +39,5 @@ export const ButtonTitle = styled.Text<ButtonContainerProps>`
 	}};
 	font-size: ${theme.fontSize.md}px;
 	font-weight: ${theme.fontWeight.semibold};
+	letter-spacing: 0.2px;
 `;

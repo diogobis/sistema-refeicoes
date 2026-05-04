@@ -17,6 +17,10 @@ import {
     DetailLabel,
     DetailRow,
     DetailValue,
+    HeaderCard,
+    HeaderMeta,
+    HeaderName,
+    HeaderTitle,
     StatusBadge,
     StatusText,
 } from "./styles";
@@ -30,21 +34,21 @@ export function Details({ navigation, route }: DetailsScreenProps) {
 	const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
 
 	useEffect(() => {
-		loadMeal();
-	}, [mealId]);
+		const loadMeal = async () => {
+			try {
+				setLoading(true);
+				const loadedMeal = await getMealById(mealId);
+				setMeal(loadedMeal);
+			} catch (error) {
+				console.error("Error loading meal:", error);
+				Alert.alert("Erro", "Não foi possível carregar a refeição");
+			} finally {
+				setLoading(false);
+			}
+		};
 
-	const loadMeal = async () => {
-		try {
-			setLoading(true);
-			const loadedMeal = await getMealById(mealId);
-			setMeal(loadedMeal);
-		} catch (error) {
-			console.error("Error loading meal:", error);
-			Alert.alert("Erro", "Não foi possível carregar a refeição");
-		} finally {
-			setLoading(false);
-		}
-	};
+		void loadMeal();
+	}, [mealId]);
 
 	const handleDeleteMeal = async () => {
 		if (meal) {
@@ -74,6 +78,14 @@ export function Details({ navigation, route }: DetailsScreenProps) {
 	return (
 		<Container>
 			<Content>
+				<HeaderCard>
+					<HeaderTitle>Refeição</HeaderTitle>
+					<HeaderName>{meal.name}</HeaderName>
+					<HeaderMeta>
+						{formatDateTime(meal.date, meal.time)}
+					</HeaderMeta>
+				</HeaderCard>
+
 				<StatusBadge isDiet={isDiet}>
 					<StatusText isDiet={isDiet}>
 						{isDiet ? "Dentro da Dieta" : "Fora da Dieta"}

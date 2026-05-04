@@ -14,12 +14,19 @@ export const InputLabel = styled.Text`
 `;
 
 export const InputField = styled(TextInput)`
-	border: 1px solid ${theme.colors.gray300};
-	border-radius: ${theme.borderRadius.md}px;
+	border: 1px solid ${theme.colors.gray200};
+	border-radius: ${theme.borderRadius.lg}px;
 	padding-horizontal: ${theme.spacing.md}px;
 	padding-vertical: ${theme.spacing.md}px;
 	font-size: ${theme.fontSize.md}px;
 	color: ${theme.colors.textPrimary};
+	background-color: ${theme.colors.white};
+	min-height: 52px;
+	shadow-color: #1e2430;
+	shadow-offset: 0px 8px;
+	shadow-opacity: 0.05;
+	shadow-radius: 16px;
+	elevation: 2;
 `;
 
 export const InputError = styled.Text`

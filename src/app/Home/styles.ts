@@ -4,16 +4,75 @@ import { theme } from "../../constants/theme";
 
 export const Container = styled(SafeAreaView)`
 	flex: 1;
-	background-color: ${theme.colors.white};
+	background-color: ${theme.colors.surface};
+`;
+
+export const Hero = styled.View`
+	background-color: ${theme.colors.primary};
+	padding: ${theme.spacing.xl}px ${theme.spacing.lg}px ${theme.spacing.xl}px;
+	border-bottom-left-radius: ${theme.borderRadius.xxl}px;
+	border-bottom-right-radius: ${theme.borderRadius.xxl}px;
+`;
+
+export const HeroEyebrow = styled.Text`
+	color: ${theme.colors.primaryForeground};
+	font-size: ${theme.fontSize.sm}px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom: ${theme.spacing.sm}px;
+`;
+
+export const HeroTitle = styled.Text`
+	font-size: 30px;
+	font-weight: ${theme.fontWeight.bold};
+	color: ${theme.colors.primaryForeground};
+	line-height: 36px;
+	max-width: 250px;
+`;
+
+export const HeroSubtitle = styled.Text`
+	font-size: ${theme.fontSize.md}px;
+	color: ${theme.colors.primaryForeground};
+	opacity: 0.88;
+	margin-top: ${theme.spacing.sm}px;
+	line-height: 22px;
+`;
+
+export const HeroStatsRow = styled.View`
+	flex-direction: row;
+	gap: ${theme.spacing.md}px;
+	margin-top: ${theme.spacing.xl}px;
+`;
+
+export const HeroStatCard = styled.View`
+	flex: 1;
+	background-color: rgba(255, 255, 255, 0.12);
+	border-width: 1px;
+	border-color: rgba(255, 255, 255, 0.16);
+	border-radius: ${theme.borderRadius.lg}px;
+	padding: ${theme.spacing.md}px;
+`;
+
+export const HeroStatValue = styled.Text`
+	color: ${theme.colors.primaryForeground};
+	font-size: 24px;
+	font-weight: ${theme.fontWeight.bold};
+`;
+
+export const HeroStatLabel = styled.Text`
+	color: ${theme.colors.primaryForeground};
+	opacity: 0.82;
+	font-size: ${theme.fontSize.xs}px;
+	margin-top: 2px;
+	text-transform: uppercase;
+	letter-spacing: 0.6px;
 `;
 
 export const Header = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	padding: ${theme.spacing.lg}px;
-	border-bottom-width: 1px;
-	border-bottom-color: ${theme.colors.gray100};
+	padding: ${theme.spacing.lg}px ${theme.spacing.lg}px 0;
 `;
 
 export const HeaderTitle = styled.Text`
@@ -40,15 +99,17 @@ export const EmptyText = styled.Text`
 `;
 
 export const SectionHeaderContainer = styled.View`
-	background-color: ${theme.colors.gray100};
-	padding: ${theme.spacing.md}px ${theme.spacing.lg}px;
+	background-color: transparent;
+	padding: ${theme.spacing.md}px ${theme.spacing.lg}px ${theme.spacing.xs}px;
 	margin-top: ${theme.spacing.md}px;
 `;
 
 export const SectionHeaderText = styled.Text`
-	font-size: ${theme.fontSize.md}px;
+	font-size: ${theme.fontSize.sm}px;
 	font-weight: ${theme.fontWeight.semibold};
-	color: ${theme.colors.textSecondary};
+	color: ${theme.colors.textMuted};
+	text-transform: uppercase;
+	letter-spacing: 0.8px;
 `;
 
 export const FAB = styled.TouchableOpacity`
@@ -61,13 +122,13 @@ export const FAB = styled.TouchableOpacity`
 	background-color: ${theme.colors.primary};
 	justify-content: center;
 	align-items: center;
-	shadow-color: #000;
-	shadow-offset: 0px 2px;
-	shadow-opacity: 0.25;
-	shadow-radius: 3.84px;
-	elevation: 5;
+	shadow-color: #1e2430;
+	shadow-offset: 0px 8px;
+	shadow-opacity: 0.08;
+	shadow-radius: 18px;
+	elevation: 4;
 `;
 
 export const StatsButtonContainer = styled.View`
-	padding: ${theme.spacing.md}px ${theme.spacing.lg}px;
+	padding: 0 ${theme.spacing.lg}px ${theme.spacing.md}px;
 `;

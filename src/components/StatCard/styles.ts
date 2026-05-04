@@ -10,11 +10,21 @@ export const StatCardContainer = styled.View<StatCardContainerProps>`
 		props.variant === "within"
 			? theme.colors.dietGreenLight
 			: theme.colors.notDietRedLight};
-	border-radius: ${theme.borderRadius.md}px;
-	padding: ${theme.spacing.lg}px;
+	border-radius: ${theme.borderRadius.xl}px;
+	padding: ${theme.spacing.xl}px;
 	margin-horizontal: ${theme.spacing.md}px;
-	margin-vertical: ${theme.spacing.md}px;
+	margin-vertical: ${theme.spacing.sm}px;
 	align-items: center;
+	border-width: 1px;
+	border-color: ${(props) =>
+		props.variant === "within"
+			? theme.colors.dietGreenSoft
+			: theme.colors.notDietRedSoft};
+	shadow-color: #1e2430;
+	shadow-offset: 0px 8px;
+	shadow-opacity: 0.06;
+	shadow-radius: 18px;
+	elevation: 3;
 `;
 
 export const StatCardPercentage = styled.Text<StatCardContainerProps>`
@@ -24,6 +34,7 @@ export const StatCardPercentage = styled.Text<StatCardContainerProps>`
 		props.variant === "within"
 			? theme.colors.dietGreen
 			: theme.colors.notDietRed};
+	line-height: 38px;
 `;
 
 export const StatCardLabel = styled.Text<StatCardContainerProps>`

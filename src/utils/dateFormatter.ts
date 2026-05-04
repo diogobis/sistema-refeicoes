@@ -37,7 +37,7 @@ export const getTimeString = (date: Date): string => {
 };
 
 export const groupMealsByDate = (
-	meals: Array<{ date: string; [key: string]: any }>,
+	meals: { date: string; [key: string]: any }[],
 ): Record<string, any[]> => {
 	return meals.reduce(
 		(acc, meal) => {
